@@ -5,8 +5,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # Build outputs
-dist/
 build/
+# Note: dist/ is included for Figma plugin distribution
 
 # Environment variables
 .env
