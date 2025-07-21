@@ -1,6 +1,6 @@
-# Figma Design Token Importer Plugin
+# Essential tokens
 
-A complete, working Figma plugin that converts CSS design tokens into native Figma variables.
+A complete, working Figma plugin that parses Tailwind CSS color variables into Figma and prints style guides.
 
 ## Quick Setup
 
