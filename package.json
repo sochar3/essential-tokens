@@ -1,0 +1,48 @@
+{
+  "name": "essential-tokens",
+  "version": "1.0.0",
+  "description": "Essential Tokens - A Figma plugin to import CSS design tokens into Figma variables",
+  "main": "code.js",
+  "scripts": {
+    "build": "npm run build:plugin && npm run build:ui",
+    "build:plugin": "tsc --noEmit false --outDir dist code.ts",
+    "build:ui": "webpack --mode production",
+    "dev": "npm run build:plugin && webpack --mode development --watch",
+    "clean": "rm -rf dist/"
+  },
+  "keywords": [
+    "figma",
+    "plugin",
+    "design-tokens",
+    "css",
+    "variables"
+  ],
+  "author": "Essential Tokens",
+  "license": "MIT",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.90.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.16",
+    "css-loader": "^6.8.1",
+    "html-inline-script-webpack-plugin": "^3.2.1",
+    "html-webpack-plugin": "^5.5.3",
+    "postcss": "^8.4.31",
+    "postcss-loader": "^7.3.3",
+    "style-loader": "^3.3.3",
+    "tailwindcss": "^4.0.0-alpha.25",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.2.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@radix-ui/react-scroll-area": "^1.0.5",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@tailwindcss/postcss": "^4.1.11",
+    "class-variance-authority": "^0.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
