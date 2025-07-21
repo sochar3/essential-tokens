@@ -25,7 +25,8 @@
     },
     "typeRoots": [
       "./node_modules/@types",
-      "./node_modules/@figma/plugin-typings"
+      "./node_modules/@figma/plugin-typings",
+      "./types"
     ]
   },
   "include": [

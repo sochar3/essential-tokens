@@ -23,8 +23,19 @@ A complete, working Figma plugin that parses Tailwind CSS color variables into F
 ## Development
 
 - **Development mode:** `npm run dev` (watches files and rebuilds)
-- **Production build:** `npm run build`
+- **Open source dev mode:** `npm run dev:opensource` (dev build without personal branding)
+- **Production build:** `npm run build` (includes all features)
+- **Open source build:** `npm run build:opensource` (excludes personal info/branding)
 - **Clean build files:** `npm run clean`
+
+## Build Variants
+
+This project supports two build variants:
+
+- **Personal Build** (`npm run build`) - Full featured version with creator info and branding
+- **Open Source Build** (`npm run build:opensource`) - Clean version without personal branding, perfect for community use
+
+The open source build automatically excludes the "About" screen while maintaining all core functionality.
 
 ## Features
 
