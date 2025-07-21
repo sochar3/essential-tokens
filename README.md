@@ -1,5 +1,7 @@
 # Essential tokens
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A complete, working Figma plugin that parses Tailwind CSS color variables into Figma and prints style guides.
 
 ## Quick Setup
@@ -25,12 +27,6 @@ A complete, working Figma plugin that parses Tailwind CSS color variables into F
 - **Development mode:** `npm run dev` (watches files and rebuilds)
 - **Production build:** `npm run build`
 - **Clean build files:** `npm run clean`
-
-## Personal Version
-
-This is the **open source version** of Essential Tokens, designed for community use and contributions.
-
-For the **personal version** with creator branding and additional features, see: [essential-tokens-personal](https://github.com/sochar3/essential-tokens-personal) (private repository).
 
 ## Features
 
