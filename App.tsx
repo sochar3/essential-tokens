@@ -2,13 +2,13 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import CSSParserScreen from './components/screens/CSSParserScreen';
 import VariableScannerScreen from './components/screens/VariableScannerScreen';
 import TypographyScreen from './components/screens/TypographyScreen';
-import InfoScreen from './components/screens/InfoScreen';
+// InfoScreen removed from open source version
 import WelcomeScreen from './components/screens/WelcomeScreen';
 import ThemeToggle from './components/ui/theme-toggle';
-import { DocumentIconLarge, PaletteIconLarge, TypeIconLarge, XIcon, InfoIcon } from './components/ui/icons';
+import { DocumentIconLarge, PaletteIconLarge, TypeIconLarge, XIcon } from './components/ui/icons';
 
-// Check if we're in open source build
-const isOpenSource = process.env.IS_OPEN_SOURCE === 'true';
+// InfoScreen removed from open source version
+// For personal version, see: https://github.com/sochar3/essential-tokens-personal
 
 // Navigation items for the sidebar
 const navigationItems: NavigationItem[] = [
@@ -273,8 +273,8 @@ export default function App() {
       case 'typography':
         return <TypographyScreen onShowNotification={showNotification} />;
       case 'info':
-        // Only render InfoScreen in personal build
-        return !isOpenSource ? <InfoScreen onShowNotification={showNotification} /> : <CSSParserScreen onShowNotification={showNotification} />;
+        // InfoScreen removed from open source version
+        return <CSSParserScreen onShowNotification={showNotification} />;
       default:
         return <CSSParserScreen onShowNotification={showNotification} />;
     }
@@ -400,24 +400,9 @@ export default function App() {
             })}
           </div>
 
-          {/* Info Icon and Theme Toggle at Bottom */}
+          {/* Theme Toggle at Bottom */}
           <div style={STATIC_STYLES.sidebarGroup}>
-            {/* Info Icon - Only show in personal build */}
-            {!isOpenSource && (
-              <button
-                onClick={() => handleSidebarNavigation('info')}
-                title="About"
-                style={{
-                  ...STATIC_STYLES.navButton,
-                  backgroundColor: activeScreen === 'info' ? 'var(--accent)' : 'transparent',
-                  color: activeScreen === 'info' ? 'var(--primary)' : 'var(--muted-foreground)'
-                }}
-                {...createMouseHandlers('info', activeScreen === 'info')}
-              >
-                <InfoIcon />
-                {activeScreen === 'info' && <div style={STATIC_STYLES.activeIndicator} />}
-              </button>
-            )}
+            {/* Info Icon removed in open source version */}
             
             {/* Theme Toggle */}
             <ThemeToggle isDark={isDarkMode} onToggle={toggleTheme} />
@@ -431,10 +416,10 @@ export default function App() {
           <header style={STATIC_STYLES.header}>
             <div style={STATIC_STYLES.headerContent}>
               <h2 style={STATIC_STYLES.headerTitle}>
-                {navigationItems.find(item => item.id === activeScreen)?.title || (activeScreen === 'info' && !isOpenSource ? 'About' : 'Parse CSS')}
+                {navigationItems.find(item => item.id === activeScreen)?.title || 'Parse CSS'}
               </h2>
               <p style={STATIC_STYLES.headerDescription}>
-                {navigationItems.find(item => item.id === activeScreen)?.description || (activeScreen === 'info' && !isOpenSource ? 'Information about this plugin' : 'Parse CSS variables from tweakcn and preview tokens')}
+                {navigationItems.find(item => item.id === activeScreen)?.description || 'Parse CSS variables from tweakcn and preview tokens'}
               </p>
             </div>
           </header>

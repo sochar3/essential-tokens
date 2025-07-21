@@ -9,11 +9,7 @@
 
 2. **Build the Plugin**
    ```bash
-   # Personal build (with all features)
    npm run build
-   
-   # Open source build (without personal branding)
-   npm run build:opensource
    ```
 
 3. **Load in Figma**

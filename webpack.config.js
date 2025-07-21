@@ -1,13 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlInlineScriptPlugin = require('html-inline-script-webpack-plugin');
-const webpack = require('webpack');
 
 // Determine if we're in development mode
 const isDevelopment = process.env.NODE_ENV !== 'production';
-
-// Check if we're building the open source version
-const isOpenSource = process.env.BUILD_TYPE === 'opensource';
 
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
@@ -76,11 +72,6 @@ module.exports = {
   },
   
   plugins: [
-    // Define environment variables for conditional compilation
-    new webpack.DefinePlugin({
-      'process.env.BUILD_TYPE': JSON.stringify(process.env.BUILD_TYPE || 'personal'),
-      'process.env.IS_OPEN_SOURCE': JSON.stringify(isOpenSource)
-    }),
     new HtmlWebpackPlugin({
       template: './ui.html',
       filename: 'ui.html',

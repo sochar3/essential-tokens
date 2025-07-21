@@ -5,12 +5,9 @@
   "main": "code.js",
   "scripts": {
     "build": "npm run build:plugin && npm run build:ui",
-    "build:opensource": "npm run build:plugin && npm run build:ui:opensource",
     "build:plugin": "tsc --noEmit false --outDir dist code.ts",
     "build:ui": "webpack --mode production",
-    "build:ui:opensource": "BUILD_TYPE=opensource webpack --mode production",
     "dev": "npm run build:plugin && webpack --mode development --watch",
-    "dev:opensource": "npm run build:plugin && BUILD_TYPE=opensource webpack --mode development --watch",
     "clean": "rm -rf dist/"
   },
   "keywords": [
