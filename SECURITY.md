@@ -9,11 +9,11 @@ We actively maintain and provide security updates for the following versions of 
 | 1.0.x   | ✅ Current         | Active development |
 | < 1.0   | ❌ Not supported   | Legacy |
 
-## Security Overview
+## Security οverview
 
-Essential Tokens is a Figma plugin that processes CSS input to create design tokens. We take security seriously and implement several safeguards:
+Essential Tokens is a Figma plugin that processes CSS input to create design tokens.
 
-### What We Do
+### We do:
 - ✅ **No external network requests** - Plugin works entirely offline
 - ✅ **Input sanitization** - CSS parsing is safe and contained
 - ✅ **No eval() usage** - No dynamic code execution
@@ -21,15 +21,14 @@ Essential Tokens is a Figma plugin that processes CSS input to create design tok
 - ✅ **Open source** - All code is publicly auditable
 - ✅ **Dependency scanning** - Regular vulnerability checks
 
-### What We Don't Do
+### We don't:
 - ❌ **No data collection** - We don't collect or store user data
 - ❌ **No telemetry** - No usage tracking or analytics
 - ❌ **No file system access** - Only processes CSS text input
 - ❌ **No remote connections** - Plugin runs entirely in Figma's sandbox
 
-## Reporting a Vulnerability
+## Reporting a vulnerability
 
-### 🚨 **For Security Issues - Do NOT Open Public Issues**
 
 If you discover a security vulnerability, please report it privately:
 
@@ -76,14 +75,9 @@ Suggested Fix:
 [Your recommendations if any]
 ```
 
-### Response Timeline
 
-- **Initial Response**: Within 24 hours
-- **Assessment**: Within 48-72 hours  
-- **Fix Development**: Depends on severity (hours to days)
-- **Public Disclosure**: After fix is released and tested
 
-## Security Best Practices for Users
+## Security best practices for users
 
 ### Safe Usage
 - ✅ **Use in Figma Desktop App** - Most secure environment
@@ -91,7 +85,7 @@ Suggested Fix:
 - ✅ **Keep Figma updated** - Use latest version for security patches
 - ✅ **Verify plugin source** - Only install from official sources
 
-### What to Avoid
+### Pls avoid:
 - ❌ **Don't paste untrusted CSS** - Only use CSS from trusted sources
 - ❌ **Don't use in shared/public Figma files** with sensitive data
 - ❌ **Don't modify plugin files** - Could introduce security issues
