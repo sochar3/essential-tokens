@@ -20,7 +20,7 @@ const navigationItems: NavigationItem[] = [
   },
   {
     id: 'variable-scanner',
-    title: 'Color guide',
+    title: 'Color guides',
     description: 'Scan existing variables and generate color guides',
     icon: PaletteIconLarge
   },
