@@ -1,0 +1,180 @@
+name: PR Validation Checks
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  build-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build plugin
+        run: npm run build
+        
+      - name: Check for build artifacts in PR
+        run: |
+          echo "Checking for build artifacts that shouldn't be committed..."
+          if git diff --name-only origin/main | grep -E "^dist/"; then
+            echo "❌ Error: dist/ files should not be committed"
+            echo "The following build files were found in your PR:"
+            git diff --name-only origin/main | grep -E "^dist/" | sed 's/^/  - /'
+            echo ""
+            echo "Please remove them with:"
+            echo "  git rm --cached dist/*"
+            echo "  git commit -m 'Remove build artifacts'"
+            echo "  git push"
+            exit 1
+          fi
+          echo "✅ No build artifacts found in PR"
+          
+      - name: Check for large files
+        run: |
+          echo "Checking for large files..."
+          large_files=$(find . -name "*.js" -o -name "*.ts" -o -name "*.tsx" | xargs ls -la | awk '$5 > 500000 {print $9, $5}')
+          if [ ! -z "$large_files" ]; then
+            echo "❌ Large files detected:"
+            echo "$large_files"
+            exit 1
+          fi
+          echo "✅ No large files detected"
+          
+      - name: Verify essential files exist
+        run: |
+          echo "Verifying essential files..."
+          required_files=(
+            "code.ts"
+            "App.tsx"
+            "manifest.json"
+            "package.json"
+            "README.md"
+          )
+          
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Required file missing: $file"
+              exit 1
+            fi
+          done
+          echo "✅ All essential files present"
+
+  typescript-check:
+    name: TypeScript Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run TypeScript compiler
+        run: npx tsc --noEmit
+        
+      - name: Check for TypeScript errors
+        run: |
+          echo "Running TypeScript validation..."
+          if ! npx tsc --noEmit; then
+            echo "❌ TypeScript compilation failed"
+            echo "Please fix TypeScript errors before merging"
+            exit 1
+          fi
+          echo "✅ TypeScript validation passed"
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run npm audit
+        run: |
+          echo "Running security audit..."
+          if npm audit --audit-level=moderate; then
+            echo "✅ No moderate or high severity vulnerabilities found"
+          else
+            echo "❌ Security vulnerabilities detected"
+            echo "Please run 'npm audit fix' to resolve issues"
+            exit 1
+          fi
+          
+      - name: Check for sensitive files
+        run: |
+          echo "Checking for sensitive files..."
+          sensitive_patterns=(
+            "*.env"
+            "*.key" 
+            "*.pem"
+            "*.p12"
+            "*password*"
+            "*secret*"
+            ".aws/"
+          )
+          
+          found_sensitive=false
+          for pattern in "${sensitive_patterns[@]}"; do
+            if find . -name "$pattern" -not -path "./node_modules/*" | grep -q .; then
+              echo "❌ Sensitive file pattern found: $pattern"
+              found_sensitive=true
+            fi
+          done
+          
+          if [ "$found_sensitive" = true ]; then
+            echo "Please remove sensitive files before merging"
+            exit 1
+          fi
+          echo "✅ No sensitive files detected"
+
+  pr-validation:
+    name: PR Validation
+    runs-on: ubuntu-latest
+    needs: [build-test, typescript-check, security-scan]
+    
+    steps:
+      - name: Success notification
+        run: |
+          echo "🎉 All PR validation checks passed!"
+          echo "✅ Build successful"
+          echo "✅ TypeScript validation passed"  
+          echo "✅ Security scan completed"
+          echo "✅ No build artifacts in PR"
+          echo ""
+          echo "This PR is ready for review by @sochar3" 

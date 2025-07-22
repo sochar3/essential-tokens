@@ -1,0 +1,37 @@
+# Essential Tokens - Code Ownership
+# This file defines who has review authority over different parts of the codebase
+
+# Global ownership - @sochar3 reviews everything
+* @sochar3
+
+# Critical core files - Must be reviewed by owner
+/code.ts @sochar3
+/App.tsx @sochar3
+/package.json @sochar3
+/manifest.json @sochar3
+/webpack.config.js @sochar3
+/tsconfig.json @sochar3
+
+# Component architecture - Core functionality
+/components/screens/ @sochar3
+/components/css-parser.tsx @sochar3
+/components/TokenDisplay.tsx @sochar3
+
+# UI components - Allow community input but owner approval required
+/components/ui/ @sochar3
+
+# Configuration files - Owner approval needed
+/tailwind.config.js @sochar3
+/postcss.config.js @sochar3
+/.github/ @sochar3
+
+# Documentation - Community friendly but moderated
+*.md @sochar3
+/Guidelines.md @sochar3
+
+# Build system - Critical for plugin functionality
+/dist/ @sochar3
+/styles/ @sochar3
+
+# Utilities and helpers - Core color parsing logic
+/components/utils/ @sochar3 

@@ -1,0 +1,169 @@
+name: ✨ Feature Request
+description: Suggest a new feature for Essential Tokens
+title: "[FEATURE] "
+labels: ["enhancement", "needs-review"]
+assignees: ["sochar3"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! ✨
+        
+        Before submitting, please:
+        - ✅ Check if a similar feature request already exists
+        - ✅ Consider if this fits with the plugin's core mission
+        - ✅ Think about how this would benefit the community
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Description
+      description: What problem does this feature solve? What's missing from the current functionality?
+      placeholder: |
+        I'm frustrated when...
+        Currently it's difficult to...
+        Users need to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the feature you'd like to see. How should it work?
+      placeholder: |
+        I think it would be great if...
+        The plugin should...
+        When I do X, it should...
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: When would this feature be useful? Who would benefit from it?
+      placeholder: |
+        This would help when...
+        Design teams could...
+        Developers would benefit because...
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples
+      description: Provide concrete examples of how this feature would work
+      placeholder: |
+        Example 1: When parsing this CSS...
+        Example 2: In this scenario...
+        Example 3: For this type of design system...
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - Color format support
+        - UI/UX improvement
+        - Parser enhancement
+        - Performance optimization
+        - Documentation
+        - Developer experience
+        - Integration (other tools)
+        - Accessibility
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to you?
+      options:
+        - Nice to have
+        - Would be helpful
+        - Important for my workflow
+        - Critical for my use case
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What workarounds or alternative solutions have you considered?
+      placeholder: |
+        Currently I work around this by...
+        Other tools solve this by...
+        I considered... but...
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Ideas (Optional)
+      description: If you have ideas about how this could be implemented, share them here
+      placeholder: |
+        This could work by...
+        The UI might look like...
+        Technically, this would involve...
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Estimated Complexity
+      description: How complex do you think this feature would be to implement?
+      options:
+        - Simple (small UI change, minor logic)
+        - Medium (new component, moderate logic)
+        - Complex (major feature, significant changes)
+        - Not sure
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups or Screenshots
+      description: |
+        If you have mockups, wireframes, or screenshots that help explain your idea, attach them here.
+        You can drag and drop images.
+
+  - type: checkboxes
+    id: related-features
+    attributes:
+      label: Related Features
+      description: Would this feature work well with or depend on other features?
+      options:
+        - label: This relates to color parsing functionality
+        - label: This relates to variable creation in Figma
+        - label: This relates to the user interface
+        - label: This relates to performance
+        - label: This relates to developer experience
+        - label: This would work well with existing scanning features
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm you have done the following
+      options:
+        - label: I have searched for existing feature requests
+          required: true
+        - label: This feature aligns with Essential Tokens' core mission (CSS token parsing)
+          required: true
+        - label: I have provided clear examples of how this would work
+          required: true
+        - label: I understand this is a community project and features take time
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **Thank you for your feature request!** 🙏
+        
+        We review all feature requests carefully and consider how they fit with the project's goals and roadmap. Community input is valuable in shaping the direction of Essential Tokens. 

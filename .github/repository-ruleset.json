@@ -1,0 +1,117 @@
+{
+  "name": "Essential Tokens Protection Ruleset",
+  "target": "branch",
+  "source_type": "Repository",
+  "source": "sochar3/essential-tokens",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": ["refs/heads/main"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    {
+      "type": "pull_request",
+      "parameters": {
+        "dismiss_stale_reviews_on_push": true,
+        "require_code_owner_review": true,
+        "require_last_push_approval": true,
+        "required_approving_review_count": 1,
+        "required_review_thread_resolution": true
+      }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "required_status_checks": [
+          {
+            "context": "build-test",
+            "integration_id": null
+          },
+          {
+            "context": "typescript-check",
+            "integration_id": null
+          }
+        ]
+      }
+    },
+    {
+      "type": "non_fast_forward",
+      "parameters": {}
+    },
+    {
+      "type": "creation",
+      "parameters": {}
+    },
+    {
+      "type": "update",
+      "parameters": {
+        "update_allows_fetch_and_merge": false
+      }
+    },
+    {
+      "type": "deletion",
+      "parameters": {}
+    },
+    {
+      "type": "required_linear_history",
+      "parameters": {}
+    },
+    {
+      "type": "file_path_restriction",
+      "parameters": {
+        "restricted_file_paths": [
+          "dist/*",
+          "node_modules/*",
+          ".env",
+          "*.log"
+        ]
+      }
+    },
+    {
+      "type": "max_file_path_length",
+      "parameters": {
+        "max_file_path_length": 255
+      }
+    },
+    {
+      "type": "file_extension_restriction",
+      "parameters": {
+        "restricted_file_extensions": [
+          "exe",
+          "bin",
+          "dmg",
+          "pkg"
+        ]
+      }
+    },
+    {
+      "type": "max_file_size",
+      "parameters": {
+        "max_file_size": 100
+      }
+    },
+    {
+      "type": "workflows",
+      "parameters": {
+        "workflows": [
+          {
+            "path": ".github/workflows/pr-checks.yml",
+            "ref": "refs/heads/main",
+            "repository_id": null,
+            "sha": null
+          }
+        ]
+      }
+    }
+  ],
+  "bypass_actors": [
+    {
+      "actor_id": 1,
+      "actor_type": "RepositoryRole",
+      "bypass_mode": "always"
+    }
+  ]
+} 

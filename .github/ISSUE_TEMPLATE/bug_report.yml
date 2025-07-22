@@ -1,0 +1,154 @@
+name: 🐛 Bug Report
+description: File a bug report to help improve Essential Tokens
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees: ["sochar3"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! 🐛
+        
+        Before submitting, please:
+        - ✅ Check if a similar issue already exists
+        - ✅ Try the latest version of the plugin
+        - ✅ Test in Figma Desktop App (browser version not supported)
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: What went wrong?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Tell us how to reproduce this behavior
+      placeholder: |
+        1. Open Essential Tokens plugin in Figma
+        2. Paste this CSS: ...
+        3. Click 'Parse Tokens'
+        4. See error...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+      placeholder: Describe what should have happened
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+      placeholder: Describe what actually happened instead
+    validations:
+      required: true
+
+  - type: textarea
+    id: css-input
+    attributes:
+      label: CSS Input (if applicable)
+      description: The CSS you were trying to parse when the bug occurred
+      render: css
+      placeholder: |
+        :root {
+          --primary: #3b82f6;
+          --secondary: hsl(217, 91%, 60%);
+        }
+
+  - type: dropdown
+    id: figma-version
+    attributes:
+      label: Figma Version
+      description: Which version of Figma are you using?
+      options:
+        - Desktop App (latest)
+        - Desktop App (older version - please specify below)
+        - Browser (not officially supported)
+    validations:
+      required: true
+
+  - type: input
+    id: figma-version-specific
+    attributes:
+      label: Specific Figma Version
+      description: If you selected "older version" above, please specify the version number
+      placeholder: "e.g., v116.5.28"
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      description: What operating system are you using?
+      options:
+        - macOS
+        - Windows
+        - Linux
+    validations:
+      required: true
+
+  - type: dropdown
+    id: color-format
+    attributes:
+      label: Color Format (if color-related bug)
+      description: Which color format was involved in the bug?
+      options:
+        - Hex (#ffffff)
+        - RGB/RGBA
+        - HSL/HSLA
+        - HSB/HSV
+        - OKLCH
+        - ShadCN raw HSL (224 71.4% 4.1%)
+        - Multiple formats
+        - Not color-related
+
+  - type: textarea
+    id: console-errors
+    attributes:
+      label: Console Errors (if any)
+      description: |
+        Any errors from browser console? 
+        In Figma: Plugins → Development → Open Console
+      render: shell
+      placeholder: Paste any console errors here
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: |
+        If applicable, add screenshots to help explain your problem.
+        You can drag and drop images here.
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: Anything else that might be helpful?
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm you have done the following
+      options:
+        - label: I have searched for existing issues that describe this bug
+          required: true
+        - label: I have tested this in Figma Desktop App (not browser)
+          required: true
+        - label: I have provided the CSS input that caused the issue
+          required: false
+        - label: I have included console errors if any were present
+          required: false 
